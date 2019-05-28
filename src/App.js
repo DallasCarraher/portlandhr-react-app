@@ -5,8 +5,6 @@ import Home from './Components/Home'
 import Manage from './Components/Manage'
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
-import PostForm from './PostForm/PostForm'
-
 class App extends Component {
   render() {
     return (
