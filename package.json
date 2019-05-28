@@ -2,7 +2,6 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
-<<<<<<< HEAD
   "dependencies": {
     "axios": "^0.18.0",
     "bootstrap": "^4.3.1",
@@ -10,7 +9,6 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-router-dom": "^5.0.0",
-=======
   "engines": {
     "node": "12.1.0",
     "npm": "6.9.0"
@@ -20,7 +18,6 @@
     "bootstrap": "^4.3.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
->>>>>>> 2926f28a22faf101cfa294c12f2530dbef7fb7b3
     "react-scripts": "3.0.1",
     "reactstrap": "^8.0.0"
   },
@@ -44,10 +41,7 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-<<<<<<< HEAD
   },
   "proxy": "http://localhost:3001"
-=======
   }
->>>>>>> 2926f28a22faf101cfa294c12f2530dbef7fb7b3
 }
