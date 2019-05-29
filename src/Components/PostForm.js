@@ -1,17 +1,6 @@
 import React, { Component } from 'react';
-import { Alert, Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import { Alert, Button, Form, FormGroup, Label, Input, Spinner } from 'reactstrap';
 import axios from 'axios'
-
-// class Alert extends Component {
-//   constructor(props){
-//     super(props)
-
-//     this.state = {
-//       visible: true
-//     }
-//   }
-  
-// }
 
 class PostForm extends Component {
   constructor(props) {
@@ -22,9 +11,10 @@ class PostForm extends Component {
       requesttype: 'Travel',
       deadlinedate: '',
       description: '',
-      formErrors: {id: '', deadlinedate: ''},
-      idValid: false,
-      deadlinedateValid: false
+      formErrors: false,
+      loading: false,
+      success: false,
+      failure: false
     }
   }
 
@@ -35,13 +25,20 @@ class PostForm extends Component {
   submitHandler = e => {
     e.preventDefault()
     console.log(this.state)
-
-    axios.post('http://localhost:3001/newuser', this.state)
-    .then(response => {
-      console.log(response)
-    }).catch(error => {
-      console.log(error)
-    })
+    this.setState({ loading : true })
+    this.setState({ success : false })
+    this.setState({ failure : false })
+    setTimeout(() => {
+      axios.post('http://localhost:3001/newuser', this.state)
+      .then(response => {
+        console.log(response)
+        this.setState({ success : true })
+      }).catch(error => {
+        console.log(error)
+        this.setState({ failure : true })
+      })
+      this.setState({ loading : false })
+    }, 3000);
   }
 
   // handleSubmit = async e => {
@@ -58,10 +55,10 @@ class PostForm extends Component {
   // };
 
   render() {
-    const { id, requesttype, deadlinedate, description } = this.state
+
+    const { id, requesttype, deadlinedate, description, loading, success, failure } = this.state
     return (
       <Form className='mx-5' onSubmit={this.submitHandler}>
-      {this.state.error && <Alert text={this.state.error} />}
       <h3 className='mt-3'>Request Application</h3>
         <FormGroup>
           <Label for="id">Employee ID</Label>
@@ -121,12 +118,13 @@ class PostForm extends Component {
             value={description}
             onChange={this.changeHandler}/>
         </FormGroup>
-        {/* <FormGroup check>
-          <Label check>
-            <Input type="checkbox" />{'I hereby sign away my soul'}
-          </Label>
-        </FormGroup> */}
-        <Button type="submit" className="mt-4" color="primary">Submit</Button>
+        <div style={{display: 'flex', height:'2em'}}>
+          <Button style={{display: 'flex',}} type="submit" className="mt-auto" color="primary" disabled={loading || success}>Submit</Button>
+          <div className="mt-auto" style={{display: 'flex',  marginLeft: '1em', paddingTop: '2px'}}>{ loading && <Spinner color="primary" /> }</div>
+          <div className="mt-auto" style={{display: 'flex', height:'4em'}}>{ success && <Alert color="success"> Request Successfully Sent! </Alert>}</div>
+          <div className="mt-auto" style={{display: 'flex', height:'4em'}}>{ failure && <Alert color="danger"> Something went wrong... Please Try Again </Alert>}</div>
+        </div>
+
       </Form>
     );
   }
