@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Col, Row, Form, FormGroup, Button, Label, Input, Table } from 'reactstrap'
 import ModalExample from './ApproveDenyModal'
 
-const ToApprove = 'http://localhost:3001/requeststoapprove'
+const ToApprove = 'https://portlandhr-rest-api.herokuapp.com/requeststoapprove'
 //const Denied = 'http://localhost:3001/requestsdenied' 
 
 class Manage extends Component {

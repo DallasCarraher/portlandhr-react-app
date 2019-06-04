@@ -37,7 +37,7 @@ class ModalExample extends React.Component {
     //this.setState({ requestid : this.props.requestid })
     event.preventDefault()
     console.log(this.state)
-    const uri = `http://localhost:3001/updaterequest/${this.state.requestid}`
+    const uri = `https://portlandhr-rest-api.herokuapp.com//updaterequest/${this.state.requestid}`
     setTimeout(() => {
       axios.post(uri, this.state)
       .then(response => {
