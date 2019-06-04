@@ -38,7 +38,7 @@ class PostForm extends Component {
         this.setState({ warning : true })
         console.log("Fields are empty!!!")
       } else {
-        axios.post('https://portlandhr-rest-api.herokuapp.com//newrequest', this.state)
+        axios.post('https://portlandhr-rest-api.herokuapp.com/newrequest', this.state)
         .then(response => {
           console.log(response)
           this.setState({ success : true })
